@@ -1,6 +1,6 @@
 # meteoritos
 ***
-Juego hecho en Godot del tipo shmup 2D 
+Juego hecho en Godot del tipo shmup 2D - Prueba
 ***
 ***Engine:*** Godot v3.5 stable
 ***Lenguaje:*** GDScript
