@@ -7,7 +7,17 @@ export var potencia_rotacion:int = 280
 var empuje:Vector2 = Vector2.ZERO
 var dir_rotacion:int = 0
 
+#atributos onready
 onready var canion:Canion = $Canion
+onready var laser:RayoLaser = $LaserBeam2D
+
+func _unhandled_input(event: InputEvent) -> void:
+	#disparo rayo
+	if event.is_action_pressed("disparo_secundario"):
+		laser.set_is_casting(true)
+	
+	if event.is_action_released("disparo_secundario"):
+		laser.set_is_casting(false)
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
