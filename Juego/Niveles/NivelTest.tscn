@@ -9,6 +9,8 @@ script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 514, 250 )
+z_index = 50
+z_as_relative = false
 gravity_scale = 0.0
 can_sleep = false
 
