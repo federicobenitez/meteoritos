@@ -3,8 +3,8 @@ extends Node2D
 
 # Atributos
 export var proyectil:PackedScene = null
-export var cadencia_disparo:float = 0.5
-export var velocidad_proyectil:int = 100
+export var cadencia_disparo:float = 1.5
+export var velocidad_proyectil:int = 10
 export var danio_proyectil:int = 1
 
 onready var timer_enfriamiento:Timer = $TimerEnfriamiento
@@ -54,6 +54,4 @@ func disparar() -> void:
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+
