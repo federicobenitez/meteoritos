@@ -2,6 +2,7 @@ extends Node2D
 
 var hitpoints:float = 10.0
 
+# warning-ignore:unused_argument
 func _process(delta: float) -> void:
 	$Canion.set_esta_disparando(true)
 

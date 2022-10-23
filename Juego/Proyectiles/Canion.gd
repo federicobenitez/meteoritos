@@ -21,6 +21,7 @@ func set_puede_disparar(duenio_puede: bool) ->void:
 func set_esta_disparando(disparando:bool) -> void:
 	esta_disparando = disparando
 
+# warning-ignore:unused_argument
 func _process(delta: float) -> void:
 	if esta_disparando and esta_enfriado:
 		disparar()
