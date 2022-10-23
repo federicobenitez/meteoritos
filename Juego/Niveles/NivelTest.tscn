@@ -11,7 +11,7 @@ script = ExtResource( 2 )
 explosion = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1128, 343 )
+position = Vector2( 484, 487 )
 z_index = 50
 z_as_relative = false
 gravity_scale = 0.0
@@ -21,4 +21,4 @@ can_sleep = false
 environment = ExtResource( 3 )
 
 [node name="EnemigoDummy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 651, 348 )
+position = Vector2( 991, 312 )

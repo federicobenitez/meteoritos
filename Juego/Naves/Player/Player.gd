@@ -20,6 +20,7 @@ onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var impacto_sfx:AudioStreamPlayer = $ImpactoSFX
+onready var escudo:Escudo = $Escudo
 
 
 func recibir_danio(danio:float) -> void:
@@ -74,6 +75,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if(event.is_action_released("mover_atras") or event.is_action_released("mover_adelante")):
 		motor_sfx.sonido_off()
+		
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
 
 # warning-ignore:unused_argument
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:

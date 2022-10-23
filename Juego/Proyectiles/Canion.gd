@@ -3,9 +3,9 @@ extends Node2D
 
 # Atributos
 export var proyectil:PackedScene = null
-export var cadencia_disparo:float = 1.5
-export var velocidad_proyectil:int = 10
-export var danio_proyectil:int = 1
+export var cadencia_disparo:float = 0.5
+export var velocidad_proyectil:int = 500
+export var danio_proyectil:int = 4
 
 onready var timer_enfriamiento:Timer = $TimerEnfriamiento
 onready var disparo_sfx:AudioStreamPlayer2D = $DisparoSFX
@@ -51,7 +51,7 @@ func disparar() -> void:
 		)
 		Eventos.emit_signal("disparo", new_proyectil)
 
+
+
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true
-
-
