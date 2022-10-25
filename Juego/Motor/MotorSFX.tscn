@@ -7,6 +7,7 @@
 stream = ExtResource( 1 )
 bus = "SFX"
 script = ExtResource( 2 )
+tiempo_transicion = 0.01
 volumen_apagado = 15.0
 
 [node name="Tween" type="Tween" parent="."]
