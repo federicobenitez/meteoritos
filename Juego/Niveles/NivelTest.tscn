@@ -1,22 +1,27 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Juego/Meteoritos/MeteoritoSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Meteoritos/Meteorito.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Niveles/Fondos/purple.png" type="Texture" id=8]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
 
 [node name="NivelTest" type="Node2D"]
+position = Vector2( -21, -24 )
+z_as_relative = false
 script = ExtResource( 2 )
 explosion = ExtResource( 4 )
 meteorito = ExtResource( 6 )
 explosion_meteorito = ExtResource( 7 )
+sector_meteoritos = ExtResource( 5 )
+tiempo_transicion_camara = 3.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 979, 529 )
+position = Vector2( 7, 18 )
 z_index = 50
 z_as_relative = false
 gravity_scale = 0.0
@@ -24,23 +29,23 @@ gravity_scale = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[node name="MeteoritoSpawner" parent="." instance=ExtResource( 5 )]
-position = Vector2( 513, -82 )
-direccion = Vector2( 1, 2 )
-
-[node name="MeteoritoSpawner2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1597, -82 )
-direccion = Vector2( -1, 2 )
-
-[node name="MeteoritoSpawner3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 476, 1168 )
-direccion = Vector2( 1, -2 )
-
-[node name="MeteoritoSpawner4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1703, 1160 )
-direccion = Vector2( -1, -2 )
-
 [node name="Fondo" type="Sprite" parent="."]
-position = Vector2( 958.5, 545.5 )
+visible = false
+position = Vector2( 967, 546 )
 scale = Vector2( 7.48828, 4.19922 )
+z_index = -1
 texture = ExtResource( 8 )
+
+[node name="TriggerLluviaMeteoritos" type="Node2D" parent="."]
+modulate = Color( 0.756863, 0.0588235, 0.0588235, 1 )
+position = Vector2( 619, 51 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="SectorDePeligro" parent="TriggerLluviaMeteoritos" instance=ExtResource( 9 )]
+position = Vector2( -12, -9 )
+
+[node name="CamaraNivel" type="Camera2D" parent="."]
+
+[node name="TweenCamara" type="Tween" parent="."]
