@@ -1,7 +1,7 @@
 extends Area2D
 
 #atributos export
-export (String, "vacio", "Meteorito, Enemigo") var tipo_peligro
+export (String, "Vacio", "Meteorito", "Enemigo") var tipo_peligro
 export var numero_peligros:int = 10
 
 #señales

@@ -208,16 +208,19 @@ tracks/4/keys = {
 radius = 536.078
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 453.11
+radius = 399.152
 
 [node name="EnemigoInterceptor" instance=ExtResource( 1 )]
+z_index = 50
 collision_layer = 2
-collision_mask = 13
+collision_mask = 15
 physics_material_override = SubResource( 7 )
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 4 )
+hitpoints = 1.0
+potencia_max = 100.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708
@@ -239,24 +242,23 @@ anims/default = SubResource( 1 )
 anims/spawn = SubResource( 3 )
 
 [node name="SpriteSpawn" type="Sprite" parent="." index="5"]
-visible = false
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="AreaDisparo" type="Area2D" parent="." index="6"]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
-visible = false
 shape = SubResource( 5 )
 
 [node name="AreaDeteccion" type="Area2D" parent="." index="7"]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
-visible = false
 shape = SubResource( 6 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
+[connection signal="body_exited" from="AreaDisparo" to="." method="_on_AreaDisparo_body_exited"]
+[connection signal="body_entered" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_entered"]
+[connection signal="body_exited" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_exited"]
