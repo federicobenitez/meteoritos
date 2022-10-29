@@ -9,13 +9,14 @@ export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 
-export var tiempo_transicion_camara:float = 1.0
+export var tiempo_transicion_camara:float = 0.1
 
 onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
 onready var contenedor_sector_meteoritos:Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 onready var camara_player:Camera2D = $Player/CameraPlayer
+onready var nave:Player = $Player
 
 #Metodos
 func _ready() -> void:
@@ -54,11 +55,9 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
 	camara_nivel.global_position = centro_camara
-	#camara_nivel.current = true
 	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
 	camara_nivel.zoom = camara_player.zoom
 	camara_nivel.devolver_zoom_original()
-	#$Player/CameraPlayer.devolver_zoom_original()
 	transicion_camaras(
 		camara_player.global_position,
 		camara_nivel.global_position,
@@ -79,7 +78,7 @@ func controlar_meteoritos_restantes() -> void:
 			camara_nivel.global_position,
 			camara_player.global_position,
 			camara_player,
-			tiempo_transicion_camara * 0.01
+			tiempo_transicion_camara * 0.1
 		)
 	
 func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, tiempo_transicion:float) -> void:
@@ -95,6 +94,13 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 	camara_actual.current = true
 	$TweenCamara.start()
 	
+func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> Vector2:
+		randomize()
+		var rand_x = rand_range(-rango_horizontal, rango_horizontal)
+		var rand_y = rand_range(-rango_vertical, rango_vertical)
+		
+		return Vector2(rand_x, rand_y)
+	
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_cam, num_peligros)
@@ -106,7 +112,14 @@ func _on_disparo(proyectil: Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
 func _on_nave_destruida(posicion:Vector2, num_explosiones:int) -> void:
-# warning-ignore:unused_variable
+	if nave is Player:
+		transicion_camaras(
+			posicion,
+			posicion + crear_posicion_aleatoria(-200.0, 200.0),
+			camara_nivel,
+			tiempo_transicion_camara
+		)
+		
 	for i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion
@@ -135,4 +148,4 @@ func _on_meteorito_destruido(pos:Vector2) -> void:
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
-		pass
+		

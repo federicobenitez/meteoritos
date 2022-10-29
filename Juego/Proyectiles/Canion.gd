@@ -3,7 +3,7 @@ extends Node2D
 
 # Atributos
 export var proyectil:PackedScene = null
-export var cadencia_disparo:float = 0.5
+export var cadencia_disparo:float = 4.5
 export var velocidad_proyectil:int = 500
 export var danio_proyectil:int = 4
 

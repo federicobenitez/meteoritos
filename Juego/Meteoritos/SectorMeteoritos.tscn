@@ -177,7 +177,6 @@ tracks/3/keys = {
 }
 
 [node name="SectorMeteoritos" type="Node2D"]
-position = Vector2( -9, -10 )
 script = ExtResource( 2 )
 
 [node name="BordesNavePlayer" type="Node2D" parent="."]
@@ -353,6 +352,5 @@ stream = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 13, 0 )
-current = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

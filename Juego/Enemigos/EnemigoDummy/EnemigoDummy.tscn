@@ -35,6 +35,5 @@ position = Vector2( 0, 50 )
 position = Vector2( 0, -52 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="Canion/TimerEnfriamiento" to="Canion" method="_on_TimerEnfriamiento_timeout"]
 
 [editable path="Canion"]
