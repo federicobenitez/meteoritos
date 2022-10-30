@@ -19,7 +19,7 @@ onready var contenedor_sector_meteoritos:Node
 onready var contenedor_enemigos:Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 onready var camara_player:Camera2D = $Player/CameraPlayer
-onready var nave:Player = $Player
+#onready var nave:Player = $Player
 
 #Metodos
 func _ready() -> void:
@@ -37,8 +37,12 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_destruida",self, "_on_nave_destruida"	)
 # warning-ignore:return_value_discarded
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
+	# warning-ignore:return_value_discarded
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
+	# warning-ignore:return_value_discarded
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro")
+	# warning-ignore:return_value_discarded
+	Eventos.connect("base_destruida", self, "_on_base_destruida")
 
 
 
@@ -75,7 +79,7 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 	)
 	
 func crear_sector_enemigos(num_enemigos:int) -> void:
-	for i  in range(num_enemigos):
+	for _i  in range(num_enemigos):
 		var new_interceptor:EnemigoInterceptor = enemigo_interceptor.instance()
 		var spawn_pos:Vector2 = crear_posicion_aleatoria(500.0, 500.0)
 		new_interceptor.global_position = player.global_position + spawn_pos
@@ -103,7 +107,7 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 		"global_position",
 		desde,
 		hasta,
-		tiempo_transicion_camara,
+		tiempo_transicion,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
@@ -129,7 +133,7 @@ func _on_disparo(proyectil: Proyectil) -> void:
 	#add_child(proyectil)
 	contenedor_proyectiles.add_child(proyectil)
 
-func _on_nave_destruida(posicion:Vector2, num_explosiones:int) -> void:
+func _on_nave_destruida(nave:Player, posicion:Vector2, num_explosiones:int) -> void:
 	if nave is Player:
 		transicion_camaras(
 			posicion,
@@ -137,13 +141,29 @@ func _on_nave_destruida(posicion:Vector2, num_explosiones:int) -> void:
 			camara_nivel,
 			tiempo_transicion_camara
 		)
+	crear_explosion(posicion,num_explosiones, 0.6, Vector2(100.0, 50.0))
+
+	#for i in range(num_explosiones):
+	#	var new_explosion:Node2D = explosion.instance()
+	#	new_explosion.global_position = posicion
+	#	add_child(new_explosion)
+	#	yield(get_tree().create_timer(0.6),"timeout")
 		
-	for i in range(num_explosiones):
+func _on_base_destruida(pos_partes:Array) -> void:
+	print("base des")
+	for posicions in pos_partes:
+		crear_explosion(posicions)
+		yield(get_tree().create_timer(0.5),"timeout")
+		
+	
+func crear_explosion(posicion:Vector2, numero:int = 3, intervalo:float = 1.0, rangos_aleatorios:Vector2 = Vector2(10.0,10.0)) ->void:
+	for _i in range(numero):
 		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = posicion
+		new_explosion.global_position = posicion + crear_posicion_aleatoria(rangos_aleatorios.x, rangos_aleatorios.y)
 		add_child(new_explosion)
-		yield(get_tree().create_timer(0.6),"timeout")
+		yield(get_tree().create_timer(intervalo), "timeout")
 		
+	
 func _on_spawn_meteoritos(pos_spawn:Vector2, dir_meteorito:Vector2, tamanio:float) -> void:
 	var new_meteorito:Meteorito = meteorito.instance()
 	new_meteorito.crear(
@@ -163,7 +183,7 @@ func _on_meteorito_destruido(pos:Vector2) -> void:
 
 
 
-func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
+func _on_TweenCamara_tween_completed(object: Object, _key: NodePath) -> void:
 	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
 		

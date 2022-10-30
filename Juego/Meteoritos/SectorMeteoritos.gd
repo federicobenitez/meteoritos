@@ -46,7 +46,6 @@ func _on_SpawnTimer_timeout() -> void:
 	cantidad_meteoritos -= 1
 	
 func _on_detector_body_entered(body:Node) -> void:
-	pass
-	#body.set_esta_en_sector(false)
+	body.set_esta_en_sector(false)
 	#print("entro al sector")
 	

@@ -64,8 +64,11 @@ color_ramp = SubResource( 2 )
 z_index = 50
 enabled = true
 cast_to = Vector2( 0, 0 )
+collision_mask = 38
+collide_with_areas = true
 script = ExtResource( 1 )
 growth_time = 0.01
+energia = 50.0
 
 [node name="FillLine2D" type="Line2D" parent="."]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
