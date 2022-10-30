@@ -71,6 +71,7 @@ contact_monitor = true
 script = ExtResource( 3 )
 hitpoints = 1.0
 rango_max_ataque = 600.0
+velocidad = 400.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = -1.5708
@@ -97,6 +98,11 @@ autoplay = "orbital"
 anims/RESET = SubResource( 5 )
 anims/default = SubResource( 3 )
 anims/orbital = SubResource( 4 )
+
+[node name="DetectorObstaculo" type="RayCast2D" parent="." index="5"]
+collision_mask = 32
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." index="6"]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 

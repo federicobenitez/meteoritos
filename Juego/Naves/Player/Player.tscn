@@ -19,6 +19,7 @@ radius = 38.6005
 [node name="Player" instance=ExtResource( 5 )]
 z_index = 50
 z_as_relative = false
+collision_mask = 54
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 2

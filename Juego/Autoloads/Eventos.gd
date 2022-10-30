@@ -12,4 +12,5 @@ signal spawn_meteorito(posicion, direccion, tamanio)
 signal meteorito_destruido(posicion)
 # warning-ignore:unused_signal
 signal base_destruida(base, posiciones)
+
 signal spawn_orbital(orbital)

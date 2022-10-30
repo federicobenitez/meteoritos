@@ -4,12 +4,14 @@ extends Node2D
 #Atributos
 var meteoritos_totales:int = 0
 var player:Player = null
+var numero_bases_enemigas = 0
 
 export var explosion:PackedScene = null
 export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var enemigo_interceptor:PackedScene = null
+export var rele_masa:PackedScene = null
 
 export var tiempo_transicion_camara:float = 0.1
 
@@ -27,6 +29,8 @@ func _ready() -> void:
 	player = DatosJuego.get_player_actual()
 	conectar_seniales()
 	crear_contenedores()
+	numero_bases_enemigas = contabilizar_bases_enemigas()
+	player = DatosJuego.get_player_actual()
 	
 	
 #metodos custom
@@ -120,13 +124,20 @@ func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> V
 		var rand_y = rand_range(-rango_vertical, rango_vertical)
 		
 		return Vector2(rand_x, rand_y)
+		
+func contabilizar_bases_enemigas() -> int:
+	return $ContenedorBasesEnemigas.get_child_count()
+
+func crear_rele() -> void:
+	var new_rele_masa:ReleMasa = rele_masa.instance()
+	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
+	add_child(new_rele_masa)
+	
 	
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, numero_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
-		print("sector meteoritos")
 		crear_sector_meteoritos(centro_cam, numero_peligros)
 	else: #tipo_peligro == "Enemigo":
-		print("sector enemigos")
 		crear_sector_enemigos(numero_peligros)
 	
 func _on_disparo(proyectil: Proyectil) -> void:
@@ -149,11 +160,14 @@ func _on_nave_destruida(nave:Player, posicion:Vector2, num_explosiones:int) -> v
 	#	add_child(new_explosion)
 	#	yield(get_tree().create_timer(0.6),"timeout")
 		
-func _on_base_destruida(pos_partes:Array) -> void:
-	print("base des")
+func _on_base_destruida(base:BaseEnemiga, pos_partes:Array) -> void:
 	for posicion in pos_partes:
 		crear_explosion(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")
+	
+	numero_bases_enemigas -= 1
+	if numero_bases_enemigas == 0:
+		crear_rele()
 		
 	
 func crear_explosion(posicion:Vector2, numero:int = 3, intervalo:float = 1.0, rangos_aleatorios:Vector2 = Vector2(10.0,10.0)) ->void:
