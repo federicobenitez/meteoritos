@@ -43,7 +43,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro")
 	# warning-ignore:return_value_discarded
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
-
+	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
 
 
 func crear_contenedores() -> void:
@@ -151,14 +151,15 @@ func _on_nave_destruida(nave:Player, posicion:Vector2, num_explosiones:int) -> v
 		
 func _on_base_destruida(pos_partes:Array) -> void:
 	print("base des")
-	for posicions in pos_partes:
-		crear_explosion(posicions)
+	for posicion in pos_partes:
+		crear_explosion(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")
 		
 	
 func crear_explosion(posicion:Vector2, numero:int = 3, intervalo:float = 1.0, rangos_aleatorios:Vector2 = Vector2(10.0,10.0)) ->void:
-	for _i in range(numero):
+	for i in range(numero):
 		var new_explosion:Node2D = explosion.instance()
+		new_explosion.apply_scale(Vector2(i + 2.0 , i + 2.0))
 		new_explosion.global_position = posicion + crear_posicion_aleatoria(rangos_aleatorios.x, rangos_aleatorios.y)
 		add_child(new_explosion)
 		yield(get_tree().create_timer(intervalo), "timeout")
@@ -186,4 +187,8 @@ func _on_meteorito_destruido(pos:Vector2) -> void:
 func _on_TweenCamara_tween_completed(object: Object, _key: NodePath) -> void:
 	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
+		
+func _on_spawn_orbital(enemigo:EnemigoOrbital) -> void:
+	contenedor_enemigos.add_child(enemigo)
+
 		
