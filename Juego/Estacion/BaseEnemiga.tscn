@@ -10,7 +10,8 @@
 [ext_resource path="res://Juego/Estacion/Audios/forceField_002.oggstr" type="AudioStream" id=8]
 [ext_resource path="res://Juego/Enemigos/EnemigoOrbital.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Juego/Estacion/PosicionesSpawn.gd" type="Script" id=10]
-[ext_resource path="res://Juego/Estacion/RutaEnemigo.gd" type="Script" id=11]
+[ext_resource path="res://Juego/Estacion/RutaEnemigo.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Estacion/RutaEnemigo 2.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 67.8472
@@ -98,16 +99,12 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Curve2D" id=8]
-_data = {
-"points": PoolVector2Array( 0, 0, 22.6272, -39.5981, 146.026, -333.518, 0, 0, 101.823, -36.7701, 222.353, -284.13, 0, 0, -56.5684, 39.5983, 258.273, -216.782, 0, 0, 36.7695, -16.9707, 298.682, -162.904, 0, 0, 50.9117, -0.000251668, 321.131, -100.047, 0, 0, 0, 0, 334.601, 7.70977, 0, 0, 6.00039, 78, 307.663, 101.997, 0, 0, 16.0003, 59.9999, 258.275, 187.304, 0, 0, 0, 0, 172.968, 232.203, 0, 0, -5.99952, 98, 132.559, 330.98, 0, 0, 7.99969, -62, 20.3133, 339.96, 0, 0, 1.99979, -42, -114.382, 357.92, 0, 0, -35.9997, 52.0002, -181.73, 304.042, 0, 0, 51.9998, -36.0003, -271.527, 227.715, 0, 0, -93.9999, 14.0005, -329.896, 146.898, 0, 0, 41.9999, -26.0002, -325.406, 84.0405, 0, 0, -118.794, 56.5691, -356.836, 12.2031, -19.7989, 11.3138, 186.676, 16.9696, -361.326, -64.1244, -14.1422, -5.65678, -2.82861, -36.7695, -325.407, -118.003, 0, 0, 33.9413, 33.941, -289.489, -212.29, 0, 0, 0, 0, -249.081, -261.678, 0, 0, 48.0835, 53.7399, -204.182, -297.597, 0, 0, 0, 0, -78.4666, -324.537, 0, 0, 0, 0, -6.62918, -351.476, -73.5389, 45.2552, 0, 0, 141.536, -333.518 )
-}
-
 [node name="BaseEnemiga" type="Node2D"]
 script = ExtResource( 6 )
-orbital = ExtResource( 9 )
 numero_orbitales = 5
 intervalo_spawn = 1.3
+orbital = ExtResource( 9 )
+rutas = [ ExtResource( 12 ), ExtResource( 13 ) ]
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -175,10 +172,6 @@ position = Vector2( 400, 0 )
 
 [node name="Oeste" type="Position2D" parent="PosicionesSpawn"]
 position = Vector2( -400, 0 )
-
-[node name="RutaEnemigo" type="Path2D" parent="."]
-curve = SubResource( 8 )
-script = ExtResource( 11 )
 
 [node name="TimerSpawnerEnemigos" type="Timer" parent="."]
 
