@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Juego/Meteoritos/MeteoritoSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.gd" type="Script" id=2]
 [ext_resource path="res://TemporalAssets/fontpage/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Juego/Meteoritos/Audios/forceField_002.oggstr" type="AudioStream" id=4]
+
+[sub_resource type="PhysicsMaterial" id=13]
+bounce = 2.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 955, 10 )
@@ -183,12 +186,14 @@ script = ExtResource( 2 )
 position = Vector2( -946, -569 )
 
 [node name="BordeSuperior" type="StaticBody2D" parent="BordesNavePlayer"]
+light_mask = 0
 position = Vector2( 961, 0 )
 collision_layer = 0
+physics_material_override = SubResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayer/BordeSuperior"]
+light_mask = 0
 position = Vector2( 1, 20 )
-z_index = 1000
 shape = SubResource( 1 )
 
 [node name="BordeIzquierdo" type="StaticBody2D" parent="BordesNavePlayer"]
@@ -251,64 +256,64 @@ rotation = 1.5708
 shape = SubResource( 8 )
 
 [node name="Spawners" type="Node2D" parent="."]
-position = Vector2( -983, -568 )
+position = Vector2( -992, -505 )
 
 [node name="MeteoritoSpawner" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 952, -120 )
+position = Vector2( 368, -101 )
 
 [node name="MeteoritoSpawner2" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 632, 1224 )
+position = Vector2( 473, 1148 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner3" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 648, -104 )
+position = Vector2( 448, -98 )
 
 [node name="MeteoritoSpawner4" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 1472, 1232 )
+position = Vector2( 1288, 1142 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner5" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 1408, -112 )
+position = Vector2( 536, -99 )
 
 [node name="MeteoritoSpawner6" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 1792, 1232 )
+position = Vector2( 1204, 1151 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner7" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 296, 1240 )
+position = Vector2( 298, 1150 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner8" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 1696, -120 )
+position = Vector2( 1445, -110 )
 
 [node name="MeteoritoSpawner9" parent="Spawners" instance=ExtResource( 1 )]
 position = Vector2( 272, -104 )
 
 [node name="MeteoritoSpawner10" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2048, 560 )
+position = Vector2( 1101, 1153 )
 direccion = Vector2( -1, 0 )
 
 [node name="MeteoritoSpawner11" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -128, 536 )
+position = Vector2( 1088, -112 )
 direccion = Vector2( 1, 0 )
 
 [node name="MeteoritoSpawner12" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -104, -135 )
+position = Vector2( 1298, -106 )
 
 [node name="MeteoritoSpawner13" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -120, 1208 )
+position = Vector2( 381, 1150 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner14" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 976, 1200 )
+position = Vector2( 546, 1155 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner15" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2072, 1208 )
+position = Vector2( 631, 1150 )
 direccion = Vector2( 1, -1 )
 
 [node name="MeteoritoSpawner16" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2056, -128 )
+position = Vector2( 1185, -111 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true

@@ -110,4 +110,4 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body is Meteorito:
 		body.destruir()
-	destruir()
+		destruir()

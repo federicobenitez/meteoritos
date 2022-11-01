@@ -27,7 +27,7 @@ func _process(delta:float) -> void:
 		
 	var dir_player:Vector2 = player_objetivo.global_position - global_position
 	var angulo_player:float = rad2deg(dir_player.angle())
-	print(angulo_player)
+	#print(angulo_player)
 	
 func elegir_animacion_aleatoria() -> String:
 	randomize()

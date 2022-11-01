@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 func rotar_hacia_player() -> void:
 	.rotar_hacia_player()
-	if dir_player.length() > rango_max_ataque or detector_obstaculo.is_colliding():
+	if dir_player.length() > rango_max_ataque or detector_obstaculo.is_colliding() or not is_instance_valid(player_objetivo):
 		canion.set_esta_disparando(false)
 	else:
 		canion.set_esta_disparando(true)
