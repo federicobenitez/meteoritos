@@ -69,7 +69,7 @@ collide_with_areas = true
 script = ExtResource( 1 )
 cast_speed = 100.0
 growth_time = 0.01
-energia = 50.0
+energia = 10.0
 radio_desgaste = -0.5
 
 [node name="FillLine2D" type="Line2D" parent="."]

@@ -149,15 +149,16 @@ func crear_rele() -> void:
 	add_child(new_rele_masa)
 	
 func destruir_nivel() -> void:
-	crear_explosion(
-		player.global_position,
-		8.0,
-		2,
-		1.5,
-		Vector2(300.0, 200.0)
-	)
-	player.destruir()
-	
+	if is_instance_valid(player):
+		crear_explosion(
+			player.global_position,
+			8.0,
+			2,
+			1.5,
+			Vector2(300.0, 200.0)
+		)
+		player.destruir()
+		
 	
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, numero_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
