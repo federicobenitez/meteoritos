@@ -14,3 +14,9 @@ signal meteorito_destruido(posicion)
 signal base_destruida(base, posiciones)
 
 signal spawn_orbital(orbital)
+#hud
+signal nivel_iniciado()
+signal nivel_terminado()
+signal detecto_zona_recarga(entrando)
+signal cambio_numero_meteoritos(numero)
+signal actualizar_tiempo(tiempo_restante)

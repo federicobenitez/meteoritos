@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Juego/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Juego/Estacion/BaseEnemiga.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Juego/Estacion/Rele/ReleMasa.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Juego/UI/HUD/HUD.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.tscn" type="PackedScene" id=16]
 
 [node name="NivelTest" type="Node2D"]
 z_as_relative = false
@@ -25,6 +27,8 @@ sector_meteoritos = ExtResource( 5 )
 enemigo_interceptor = ExtResource( 12 )
 rele_masa = ExtResource( 14 )
 tiempo_transicion_camara = 1.0
+
+[node name="HUD" parent="." instance=ExtResource( 15 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 619, 740 )
@@ -76,4 +80,18 @@ numero_peligros = 2
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" instance=ExtResource( 13 )]
 position = Vector2( 2457, 1271 )
 
+[node name="RestartTimer" type="Timer" parent="."]
+
+[node name="ActualizadorTimer" type="Timer" parent="."]
+
+[node name="ContenedorInformacion" parent="." instance=ExtResource( 16 )]
+margin_left = -336.0
+margin_top = 206.0
+margin_right = 71.0
+margin_bottom = 374.0
+
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
+[connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]
+
+[editable path="ContenedorInformacion"]
