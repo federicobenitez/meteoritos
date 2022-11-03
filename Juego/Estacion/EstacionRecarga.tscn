@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Estacion/AreaAtraccion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/UI/HUD/Kenney Future.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.gd" type="Script" id=3]
 [ext_resource path="res://Juego/Estacion/Audios/slime_000.oggstr" type="AudioStream" id=4]
 [ext_resource path="res://Juego/Estacion/Audios/slime_001.oggstr" type="AudioStream" id=5]
@@ -133,7 +134,16 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="EstacionRecarga" type="Node2D"]
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.164706, 0.772549, 0.117647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.682353, 0.0862745, 0.0862745, 1 )
+
+[node name="EstacionRecarga" type="Node2D" groups=["minimapa"]]
 script = ExtResource( 3 )
 
 [node name="AreaCollision" type="Area2D" parent="."]
@@ -163,6 +173,16 @@ stream = ExtResource( 4 )
 
 [node name="VacioSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="BarraEnergia" type="ProgressBar" parent="."]
+margin_left = -61.0
+margin_top = -171.0
+margin_right = 69.0
+margin_bottom = -153.0
+custom_fonts/font = SubResource( 9 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
+value = 50.0
 
 [connection signal="body_entered" from="AreaCollision" to="." method="_on_AreaCollision_body_entered"]
 [connection signal="body_entered" from="AreaRecarga" to="." method="_on_AreaRecarga_body_entered"]

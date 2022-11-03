@@ -13,69 +13,6 @@ bounce = 0.5
 [sub_resource type="CircleShape2D" id=8]
 radius = 101.0
 
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("SpriteSpawn:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 4, 4 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("SpriteSpawn:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-
 [sub_resource type="Animation" id=1]
 resource_name = "default"
 length = 0.001
@@ -210,7 +147,14 @@ radius = 536.078
 [sub_resource type="CircleShape2D" id=6]
 radius = 399.152
 
-[node name="EnemigoInterceptor" instance=ExtResource( 1 )]
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.827451, 0.956863, 0.117647, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="EnemigoInterceptor" groups=["minimapa"] instance=ExtResource( 1 )]
 z_index = 50
 collision_layer = 2
 collision_mask = 15
@@ -223,7 +167,9 @@ hitpoints = 1.0
 potencia_max = 100.0
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0 )
 rotation = 1.5708
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -237,12 +183,12 @@ danio_proyectil = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "spawn"
-anims/RESET = SubResource( 2 )
 anims/default = SubResource( 1 )
 anims/spawn = SubResource( 3 )
 
 [node name="SpriteSpawn" type="Sprite" parent="." index="5"]
-scale = Vector2( 4, 4 )
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
 [node name="AreaDisparo" type="Area2D" parent="." index="6"]
@@ -256,6 +202,9 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
 shape = SubResource( 6 )
+
+[node name="BarraSalud" parent="." index="8"]
+custom_styles/fg = SubResource( 9 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]

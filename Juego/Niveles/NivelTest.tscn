@@ -37,6 +37,7 @@ position = Vector2( 619, 740 )
 environment = ExtResource( 3 )
 
 [node name="Fondo" type="Sprite" parent="."]
+visible = false
 position = Vector2( 1072, 521 )
 scale = Vector2( 15.8008, 9.30078 )
 z_index = -1

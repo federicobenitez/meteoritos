@@ -14,7 +14,7 @@ export var enemigo_interceptor:PackedScene = null
 export var rele_masa:PackedScene = null
 
 export var tiempo_transicion_camara:float = 0.1
-export var tiempo_limite:float = 20
+export var tiempo_limite:float = 50
 
 onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
@@ -44,7 +44,7 @@ func conectar_seniales() -> void:
 # warning-ignore:return_value_discarded
 	Eventos.connect("disparo", self, "_on_disparo")
 # warning-ignore:return_value_discarded
-	Eventos.connect("nave_destruida",self, "_on_nave_destruida"	)
+	Eventos.connect("nave_destruida",self, "_on_nave_destruida")
 # warning-ignore:return_value_discarded
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
 	# warning-ignore:return_value_discarded
@@ -78,7 +78,8 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
 	camara_nivel.global_position = centro_camara
-	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
+	#contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
+	contenedor_sector_meteoritos.call_deferred("add_child",new_sector_meteoritos)
 	camara_nivel.zoom = camara_player.zoom
 	camara_nivel.devolver_zoom_original()
 	transicion_camaras(
@@ -93,7 +94,8 @@ func crear_sector_enemigos(num_enemigos:int) -> void:
 		var new_interceptor:EnemigoInterceptor = enemigo_interceptor.instance()
 		var spawn_pos:Vector2 = crear_posicion_aleatoria(500.0, 500.0)
 		new_interceptor.global_position = player.global_position + spawn_pos
-		contenedor_enemigos.add_child(new_interceptor)
+		#contenedor_enemigos.add_child(new_interceptor)
+		contenedor_enemigos.call_deferred("add_child",new_interceptor)
 	
 func controlar_meteoritos_restantes() -> void:
 	meteoritos_totales -= 1
@@ -146,7 +148,8 @@ func crear_rele() -> void:
 		margen.y *= -1
 	
 	new_rele_masa.global_position = player.global_position + (margen + pos_aleatoria)
-	add_child(new_rele_masa)
+	#add_child(new_rele_masa)
+	call_deferred("add_child", new_rele_masa)
 	
 func destruir_nivel() -> void:
 	if is_instance_valid(player):
@@ -191,7 +194,7 @@ func _on_nave_destruida(nave:Player, posicion:Vector2, num_explosiones:int) -> v
 func _on_base_destruida(base:BaseEnemiga, pos_partes:Array) -> void:
 	for posicion in pos_partes:
 		crear_explosion(posicion)
-		yield(get_tree().create_timer(0.5),"timeout")
+		#yield(get_tree().create_timer(0.5),"timeout")
 	
 	numero_bases_enemigas -= 1
 	if numero_bases_enemigas == 0:

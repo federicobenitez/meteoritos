@@ -9,6 +9,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		
 func _ready() -> void:
 	$AnimationPlayer.play("spawn")
+	Eventos.emit_signal("minimapa_objeto_creado")
 	
 
 func _on_DetectorPlayer_body_entered(body: Node) -> void:

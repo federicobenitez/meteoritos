@@ -27,12 +27,14 @@ func _ready() -> void:
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
 	canion.set_esta_disparando(true)
 	
+#or not is_instance_valid(player_objetivo)
 func rotar_hacia_player() -> void:
 	.rotar_hacia_player()
-	if dir_player.length() > rango_max_ataque or detector_obstaculo.is_colliding() or not is_instance_valid(player_objetivo):
+	if dir_player.length() > rango_max_ataque or detector_obstaculo.is_colliding():
 		canion.set_esta_disparando(false)
 	else:
 		canion.set_esta_disparando(true)
+
 
 func _on_base_destruida(base:Node2D, _pos) -> void:
 	if base == base_duenia:

@@ -227,6 +227,7 @@ position = Vector2( -1076, -568 )
 
 [node name="DetectorSuperior" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 961, -240 )
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorSuperior"]
 position = Vector2( 14.5, -2 )
@@ -234,6 +235,7 @@ shape = SubResource( 5 )
 
 [node name="DetectorInferior" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 961, 1340 )
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorInferior"]
 position = Vector2( 46, 1 )
@@ -241,6 +243,7 @@ shape = SubResource( 6 )
 
 [node name="DetectorIzquierda" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( -262, 518 )
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorIzquierda"]
 position = Vector2( 2.5, 31.5 )

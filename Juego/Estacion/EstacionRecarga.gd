@@ -6,9 +6,15 @@ export var radio_energia_entregada:float = 0.05
 
 onready var carga_sfx:AudioStreamPlayer = $CargaSFX
 onready var vacion_sfx:AudioStreamPlayer = $VacioSFX
+onready var barra_energia:ProgressBar = $BarraEnergia
 
 var nave_player:Player = null
 var player_en_zona:bool = false
+
+func _ready() -> void:
+	barra_energia.max_value = energia
+	barra_energia.value = energia
+	controlar_energia()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
@@ -17,8 +23,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action("recarga_escudo"):
 		nave_player.get_escudo().controlar_energia(radio_energia_entregada)
+		controlar_energia()
 	elif event.is_action("recarga_laser"):
 		nave_player.get_laser().controlar_energia(radio_energia_entregada)
+		controlar_energia()
 		
 	if event.is_action_released("recarga_laser"):
 		Eventos.emit_signal("ocultar_energia_laser")
@@ -38,7 +46,10 @@ func controlar_energia() -> void:
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		vacion_sfx.play()
-
+	
+	barra_energia.value = energia
+	
+	
 func _on_AreaCollision_body_entered(body: Node) -> void:
 	if body.has_method("destruir"):
 		body.destruir()
