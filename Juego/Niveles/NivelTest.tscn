@@ -7,7 +7,7 @@
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Meteoritos/Meteorito.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Juego/Niveles/Fondos/purple.png" type="Texture" id=8]
+[ext_resource path="res://Juego/Niveles/Fondos/StarFieldBackground.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=10]
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=11]
@@ -19,7 +19,7 @@
 [ext_resource path="res://Juego/Niveles/Musica/POL-chamber-of-secrets-short.wav" type="AudioStream" id=17]
 [ext_resource path="res://Juego/Niveles/Musica/ScifiTheme160kbps.mp3" type="AudioStream" id=18]
 
-[node name="NivelTest" type="Node2D"]
+[node name="NivelBase" type="Node2D"]
 z_as_relative = false
 script = ExtResource( 2 )
 explosion = ExtResource( 4 )
@@ -34,18 +34,8 @@ musica_combate = ExtResource( 17 )
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 619, 740 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
-
-[node name="Fondo" type="Sprite" parent="."]
-visible = false
-position = Vector2( 1072, 521 )
-scale = Vector2( 15.8008, 9.30078 )
-z_index = -1
-texture = ExtResource( 8 )
 
 [node name="TriggerLluviaMeteoritos" type="Node2D" parent="."]
 modulate = Color( 0.756863, 0.0588235, 0.0588235, 1 )
@@ -94,6 +84,11 @@ margin_left = -336.0
 margin_top = 206.0
 margin_right = 71.0
 margin_bottom = 374.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 619, 740 )
+
+[node name="StarFieldBackground" parent="." instance=ExtResource( 8 )]
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
