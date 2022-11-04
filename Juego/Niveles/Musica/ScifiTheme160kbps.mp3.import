@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ScifiTheme160kbps.mp3-33b34c77ac89bdcf4ef06f029edfdbfb.mp3str"
+
+[deps]
+
+source_file="res://Juego/Niveles/Musica/ScifiTheme160kbps.mp3"
+dest_files=[ "res://.import/ScifiTheme160kbps.mp3-33b34c77ac89bdcf4ef06f029edfdbfb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

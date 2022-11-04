@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A+Different+World+By+Night.mp3-11cf2db7f6bf595311772f4b5d77ab85.mp3str"
+
+[deps]
+
+source_file="res://Juego/Niveles/Musica/A+Different+World+By+Night.mp3"
+dest_files=[ "res://.import/A+Different+World+By+Night.mp3-11cf2db7f6bf595311772f4b5d77ab85.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Juego/Estacion/Rele/ReleMasa.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Juego/UI/HUD/HUD.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Juego/Niveles/Musica/POL-chamber-of-secrets-short.wav" type="AudioStream" id=17]
+[ext_resource path="res://Juego/Niveles/Musica/ScifiTheme160kbps.mp3" type="AudioStream" id=18]
 
 [node name="NivelTest" type="Node2D"]
 z_as_relative = false
@@ -27,6 +29,8 @@ sector_meteoritos = ExtResource( 5 )
 enemigo_interceptor = ExtResource( 12 )
 rele_masa = ExtResource( 14 )
 tiempo_transicion_camara = 1.0
+musica_nivel = ExtResource( 18 )
+musica_combate = ExtResource( 17 )
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
 
