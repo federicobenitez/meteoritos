@@ -12,6 +12,7 @@ export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var enemigo_interceptor:PackedScene = null
 export var rele_masa:PackedScene = null
+export(String, FILE, "*.tscn") var prox_nivel = ""
 
 export var tiempo_transicion_camara:float = 0.1
 export var tiempo_limite:float = 50
@@ -59,6 +60,7 @@ func conectar_seniales() -> void:
 	# warning-ignore:return_value_discarded
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
 	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
+	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
 
 
 func crear_contenedores() -> void:
@@ -201,7 +203,7 @@ func _on_nave_destruida(nave:Player, posicion:Vector2, num_explosiones:int) -> v
 func _on_base_destruida(base:BaseEnemiga, pos_partes:Array) -> void:
 	for posicion in pos_partes:
 		crear_explosion(posicion)
-		#yield(get_tree().create_timer(0.5),"timeout")
+		yield(get_tree().create_timer(0.5),"timeout")
 	
 	numero_bases_enemigas -= 1
 	if numero_bases_enemigas == 0:
@@ -233,7 +235,10 @@ func _on_meteorito_destruido(pos:Vector2) -> void:
 	
 	controlar_meteoritos_restantes()
 	
-
+func _on_nivel_completado()-> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().change_scene(prox_nivel)
 
 
 func _on_TweenCamara_tween_completed(object: Object, _key: NodePath) -> void:
