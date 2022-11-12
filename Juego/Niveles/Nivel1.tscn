@@ -22,6 +22,11 @@ position = Vector2( 1874, -701 )
 tipo_peligro = "Enemigo"
 numero_peligros = 2
 
+[node name="SectorDePeligro4" parent="TriggerInterceptores" index="3" instance=ExtResource( 3 )]
+position = Vector2( 4096, -208 )
+tipo_peligro = "Meteorito"
+numero_peligros = 2
+
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" index="0" instance=ExtResource( 2 )]
 position = Vector2( 5087, -408 )
 numero_orbitales = 5
