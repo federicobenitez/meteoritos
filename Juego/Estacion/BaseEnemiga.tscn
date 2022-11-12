@@ -110,7 +110,6 @@ border_width_bottom = 2
 [node name="BaseEnemiga" type="Node2D" groups=["minimapa"]]
 position = Vector2( -2.37842, 47.5683 )
 script = ExtResource( 6 )
-hitpoints = 15.0
 intervalo_spawn = 2.0
 orbital = ExtResource( 9 )
 rutas = [ ExtResource( 12 ), ExtResource( 13 ) ]

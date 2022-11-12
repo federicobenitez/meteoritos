@@ -15,7 +15,7 @@ export var rele_masa:PackedScene = null
 export(String, FILE, "*.tscn") var prox_nivel = ""
 
 export var tiempo_transicion_camara:float = 0.1
-export var tiempo_limite:float = 50
+export var tiempo_limite:float = 120
 
 export var musica_nivel:AudioStream = null
 export var musica_combate:AudioStream = null

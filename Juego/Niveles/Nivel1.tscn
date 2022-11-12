@@ -8,10 +8,23 @@
 prox_nivel = "res://Juego/Niveles/Nivel2.tscn"
 
 [node name="SectorDePeligro" parent="TriggerInterceptores" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1982, 412 )
+position = Vector2( 2919, -208 )
+tipo_peligro = "Enemigo"
+numero_peligros = 2
+
+[node name="SectorDePeligro2" parent="TriggerInterceptores" index="1" instance=ExtResource( 3 )]
+position = Vector2( 3147, 657 )
+tipo_peligro = "Enemigo"
+numero_peligros = 2
+
+[node name="SectorDePeligro3" parent="TriggerInterceptores" index="2" instance=ExtResource( 3 )]
+position = Vector2( 1874, -701 )
+tipo_peligro = "Enemigo"
 numero_peligros = 2
 
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" index="0" instance=ExtResource( 2 )]
-position = Vector2( 3055, 374 )
+position = Vector2( 5087, -408 )
+numero_orbitales = 5
 
+[editable path="ContenedorBasesEnemigas/BaseEnemiga"]
 [editable path="ContenedorInformacion"]

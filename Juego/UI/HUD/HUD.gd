@@ -41,13 +41,18 @@ func _on_actualizar_info_tiempo(tiempo_restante:int) -> void:
 	info_tiempo_restante.modificar_texto(
 		"Tiempo restante\n%02d:%02d" % [minutos, segundos]
 	)
-	if tiempo_restante %10 == 0:
+	if tiempo_restante %120 == 0:
 		info_tiempo_restante.mostrar_suavizado()
-	if tiempo_restante == 17:
+	if tiempo_restante == 115:
 		#info_tiempo_restante.set_auto_ocultar(false)
 		info_tiempo_restante.ocultar_suavizado()
+	
 	elif tiempo_restante == 0:
 		info_tiempo_restante.ocultar()
+		
+	if tiempo_restante == 20:
+		#info_tiempo_restante.set_auto_ocultar(false)
+		info_tiempo_restante.mostrar_suavizado()
 	
 func _on_detecto_zona_recarga(en_zona:bool) -> void:
 	if en_zona:

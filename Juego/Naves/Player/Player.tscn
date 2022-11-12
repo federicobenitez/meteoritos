@@ -27,7 +27,8 @@ contact_monitor = true
 linear_damp = 2.0
 angular_damp = 1.0
 script = ExtResource( 2 )
-potencia_motor = 18
+hitpoints = 50.0
+potencia_motor = 50
 potencia_rotacion = 70
 estela_maxima = 150
 
@@ -57,7 +58,7 @@ position = Vector2( 0, 30 )
 [node name="LaserBeam2D" parent="." index="9" instance=ExtResource( 4 )]
 position = Vector2( 36, 0 )
 cast_speed = 3000.0
-growth_time = 0.1
+growth_time = 0.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 

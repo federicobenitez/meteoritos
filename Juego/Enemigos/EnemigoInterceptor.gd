@@ -6,7 +6,7 @@ extends EnemigoBase
 enum ESTADO_IA {IDLE, ATACANDOQ, ATACANDOP, PERSECUCION}
 
 #atributos export
-export var potencia_max:float = 800.0
+export var potencia_max:float = 50.0
 
 #atrubutos
 var estado_ia_actual:int = ESTADO_IA.IDLE
