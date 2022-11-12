@@ -11,6 +11,7 @@ prox_nivel = "res://Juego/UI/MenuPrincipal.tscn"
 [node name="SectorDePeligro" parent="TriggerLluviaMeteoritos" index="0" instance=ExtResource( 4 )]
 position = Vector2( -1299, 774 )
 tipo_peligro = "Meteorito"
+numero_peligros = 5
 
 [node name="SectorDePeligro2" parent="TriggerLluviaMeteoritos" index="1" instance=ExtResource( 4 )]
 position = Vector2( -1299, 2154 )

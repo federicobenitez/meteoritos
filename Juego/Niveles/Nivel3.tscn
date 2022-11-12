@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Juego/Estacion/BaseEnemiga.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/NivelBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=4]
 
 [node name="Nivel3" instance=ExtResource( 2 )]
 prox_nivel = "res://Juego/Niveles/Nivel4.tscn"
@@ -13,14 +14,24 @@ position = Vector2( -313, 168 )
 [node name="EstacionRecarga" parent="ContenedorEstaciones" index="0" instance=ExtResource( 3 )]
 position = Vector2( -1344, 765 )
 
+[node name="SectorDePeligro" parent="TriggerInterceptores" index="0" instance=ExtResource( 4 )]
+position = Vector2( -1475, -27 )
+tipo_peligro = "Meteorito"
+numero_peligros = 5
+
+[node name="SectorDePeligro2" parent="TriggerInterceptores" index="1" instance=ExtResource( 4 )]
+position = Vector2( 0, 1909 )
+tipo_peligro = "Meteorito"
+numero_peligros = 5
+
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" index="0" instance=ExtResource( 1 )]
-position = Vector2( -2263, -827 )
+position = Vector2( -3383, -827 )
 
 [node name="BaseEnemiga2" parent="ContenedorBasesEnemigas" index="1" instance=ExtResource( 1 )]
-position = Vector2( 877, 2992 )
+position = Vector2( -1907, 3792 )
 
 [node name="BaseEnemiga3" parent="ContenedorBasesEnemigas" index="2" instance=ExtResource( 1 )]
-position = Vector2( 1309, -1259 )
+position = Vector2( 4397, -1120 )
 
 [node name="StarFieldBackground" parent="." index="11"]
 color_fondo = Color( 0.623529, 0.223529, 0.223529, 1 )

@@ -9,7 +9,7 @@
 prox_nivel = "res://Juego/Niveles/Nivel3.tscn"
 
 [node name="TriggerLluviaMeteoritos" parent="." index="1"]
-position = Vector2( -1543, -188 )
+position = Vector2( -1001, 540 )
 
 [node name="SectorDePeligro" parent="TriggerLluviaMeteoritos" index="0" instance=ExtResource( 3 )]
 position = Vector2( 692, 0 )
@@ -35,13 +35,13 @@ numero_peligros = 3
 position = Vector2( 1258, 2338 )
 
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" index="0" instance=ExtResource( 2 )]
-position = Vector2( -2449, -620 )
+position = Vector2( -3062, -1333 )
 
 [node name="BaseEnemiga2" parent="ContenedorBasesEnemigas" index="1" instance=ExtResource( 2 )]
-position = Vector2( -2630, 1854 )
+position = Vector2( -3858, 2097 )
 
 [node name="BaseEnemiga3" parent="ContenedorBasesEnemigas" index="2" instance=ExtResource( 2 )]
-position = Vector2( 3882, -1240 )
+position = Vector2( 5193, -1453 )
 
 [node name="StarFieldBackground" parent="." index="11"]
 color_fondo = Color( 0.196078, 0.160784, 0.160784, 1 )
